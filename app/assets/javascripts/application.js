@@ -11,6 +11,32 @@
 // about supported directives.
 //
 //= require rails-ujs
+//= require jquery
+//= require twitter/bootstrap
+//= require popper
+//= require bootstrap-sprockets
+//= require semantic-ui
+//= require toastr.min
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+/*global toastr*/
+toastr.options = {
+  "closeButton": false,
+  "debug": false,
+  "positionClass": "toast-top-center",
+  "onclick": null,
+  "showDuration": "300",
+  "hideDuration": "1000",
+  "timeOut": "5000",
+  "extendedTimeOut": "1000",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
+}
+
+$(document).on('turbolinks:load', function(){
+$('.ui.dropdown').dropdown();
+});
