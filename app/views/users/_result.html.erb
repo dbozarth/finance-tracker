@@ -1,25 +1,53 @@
-<%= render 'layouts/messages' %>
+<!-- The next Ruby blocks if you want a specific
+action blocked from a tag
+-->
+
+<% if params[:action] == 'search' %>
+  <%= render 'layouts/messages' %>
+<% end %>
 
 <% if @stock_sym %>
-        <div class="ui relaxed large horizontal divided list">
-          <div class="item">
-            <div class="content">
-              <div class="header"><i class="ui circular inverted pink building outline icon"></i>  Company Name: <%= @stock_sym.name%>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            
-            <div class="content">
-              <div class="header"><i class="ui circular inverted violet chart line icon"></i>  Symbol: <%= @stock_sym.ticker%>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            
-            <div class="content">
-              <div class="header"><i class="ui circular inverted green dollar icon"></i>  Price: <%= @stock_sym.last_price%></div>
-            </div>
-          </div>        
+  <div class="ui relaxed large horizontal list">
+    <div class="item">
+      <div class="content">
+        <div class="header"><i class="ui circular inverted pink building outline icon"></i>  Company Name: <%= @stock_sym.name %>
         </div>
-      <% end %>
+      </div>
+    </div>
+    <div class="item">
+      
+      <div class="content">
+        <div class="header"><i class="ui circular inverted violet chart line icon"></i>  Symbol: <%= @stock_sym.ticker %>
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      
+      <div class="content">
+        <div class="header"><i class="ui circular inverted purple dollar icon"></i>  Price: <%= @stock_sym.last_price %></div>
+      </div>
+    </div>
+    <div class="item">
+      
+      <div class="content">
+        <div class="header">
+        <% if current_user.can_add_stock?(@stock_sym.ticker) %>
+          <%= link_to "Add", user_stocks_path(user: current_user, stock_ticker: @stock_sym.ticker), class: "ui green button mini", method: :post %>
+        <% else %>
+          <% if !current_user.under_stock_limit? %>
+            <div class="ui left pointing red label">
+              <strong>Sorry! 10 Stocks Max.</strong>
+            </div>
+          <% end %>
+          <% if current_user.stock_already_added?(@stock_sym.ticker) %>
+            <div class="ui left pointing green label">
+              <strong>Awesome! Already Added</strong>
+            </div>
+          <% end %>
+        <% end %>
+        </div>
+      </div>
+    </div>        
+  </div>
+<% end %>
+<br/>
