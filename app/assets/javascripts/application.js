@@ -21,6 +21,12 @@
 //= require turbolinks
 //= require_tree .
 
+close_message = function() {
+  $('.message .close').on('click', function() {
+    $(this).closest('.message').transition('fade');
+  });
+};
+
 /*global toastr*/
 toastr.options = {
   "closeButton": false,
@@ -37,6 +43,8 @@ toastr.options = {
   "hideMethod": "fadeOut"
 }
 
-$(document).on('turbolinks:load', function(){
+$(document).ready(function(){
 $('.ui.dropdown').dropdown();
+
+close_message();
 });

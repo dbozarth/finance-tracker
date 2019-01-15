@@ -38,6 +38,8 @@ gem 'sprockets', '~> 3.7', '>= 3.7.2'
 gem 'sprockets-rails', '~> 3.1', '>= 3.1.1'
 # Toastr test
 gem 'toastr-rails'
+# Use Stcock Quotes
+gem 'stock_quote'
 
 # Use bootstrap
 gem 'bootstrap', '~> 4.2.1'

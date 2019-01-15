@@ -1,0 +1,25 @@
+<%= render 'layouts/messages' %>
+
+<% if @stock_sym %>
+        <div class="ui relaxed large horizontal divided list">
+          <div class="item">
+            <div class="content">
+              <div class="header"><i class="ui circular inverted pink building outline icon"></i>  Company Name: <%= @stock_sym.name%>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            
+            <div class="content">
+              <div class="header"><i class="ui circular inverted violet chart line icon"></i>  Symbol: <%= @stock_sym.ticker%>
+              </div>
+            </div>
+          </div>
+          <div class="item">
+            
+            <div class="content">
+              <div class="header"><i class="ui circular inverted green dollar icon"></i>  Price: <%= @stock_sym.last_price%></div>
+            </div>
+          </div>        
+        </div>
+      <% end %>

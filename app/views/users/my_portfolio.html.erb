@@ -1,0 +1,26 @@
+<div class="ui two column grid">
+    <div class="twelve wide column">
+      <h2 class="ui aligned header">
+        My Portfolio
+      </h2>
+      <h5 class="ui header">Search for Stocks</h5>
+
+      <div id="stock-lookup" class="ui form">
+        <%= form_tag search_stocks_path, remote: true, method: :get, id: "stock-lookup-form" do %>
+          <div class="field">
+            <%= text_field_tag :stock, params[:stock], id: 'stock_input', placeholder: "Stock ticker symbol", autofocus: true, class: "ui left icon input" %>
+          </div>
+          <div class="field">
+            <%= button_tag(type: :submit, id: 'stock_check', class: "ui teal icon button") do %>
+              <i class="ui search icon"></i> Look Up Stock
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      <br/>
+      <div id="results">
+        <%= render 'users/result' %>
+      </div>
+    </div>
+      <%= render 'layouts/sidebar' %>
+</div><br/>
