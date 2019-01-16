@@ -1,0 +1,45 @@
+<br/>
+
+<div class="ui two column grid">
+  <div class="twelve wide column">
+    <h1 class="ui aligned header">
+      My Friends
+    </h1>
+
+<%#= render 'friends/lookup' %>
+
+<% if @friendships.size > 0 %>
+  <table class="ui celled striped teal table">
+    <thead>
+      <tr>
+        <th colspan="3">
+          <i class="users icon"></i>Your Friends
+        </th>
+      </tr>
+      <tr>
+        <th class="four wide"><i class="address book outline icon"></i>Name</th>
+        <th class="four wide"><i class="envelope outline icon"></i>Email</th>
+        <th class="four wide"><i class="share square outline icon"></i>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @friendships.each do |friend| %>
+        <tr>
+          <td><%= friend.full_name %></td>
+          <td><%= friend.email %></td>
+          <td>
+            <%= link_to "View Friend", user_path(friend), class: "ui violet mini button" %>&nbsp;
+            <%= link_to "Remove Friend", friendship_path(friend), method: :delete, data: {confirm: "Are you sure?"}, class: "ui red mini button" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="ui segment">
+    <p>Hmmm... Looks like you have not added any friends yet.</p>
+  </div>
+<% end %>
+
+  </div>
+</div>
