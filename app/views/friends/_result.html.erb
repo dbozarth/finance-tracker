@@ -1,0 +1,37 @@
+<% if params[:action] == 'search' %>
+  <%= render 'layouts/messages' %>
+<% end %>
+
+<% if @users %>
+  <% if @users.size > 0 %>
+    <table class="ui celled inverted teal large table">
+      <thead>
+        <tr>
+          <th><i class="ui user outline icon"></i>Name</th>
+          <th><i class="ui envelope outline icon"></i>Email</th>
+          <th><i class="ui share square outline icon"></i>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.full_name %></td>
+            <td><%= user.email %></td>
+            <td><%= link_to "View Profile", "#", class: "ui violet mini button" %>&nbsp;&nbsp;&nbsp;
+            <% if current_user.not_friends_with?(user.id) %>
+            <%= link_to "Add User", add_friend_path(user: current_user, friend: user), class: "ui primary mini button", method: :post %>
+            <% else %>
+              <div class="ui left pointing red label">
+                <i class="ui users icon"></i>
+                <strong>Already Friends :)</strong>
+              </div>
+            <% end %>
+            </td>
+          </tr>  
+        <% end %>
+      </tbody>
+      </thead>
+    </table>
+  <% end %>
+<% end %>
+<br/>
